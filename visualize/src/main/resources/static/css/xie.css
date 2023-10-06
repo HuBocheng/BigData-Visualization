@@ -1,0 +1,99 @@
+#CheckButton {
+    padding: 10px;
+    border: none;
+    background-color: #f2f2f2;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+#CheckButton:hover {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#CheckButton:focus {
+    outline: none;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.6), 0 0 5px rgba(0, 0, 0, 0.4);
+}
+/* select标签样式 */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 16px;
+    background-size: 20px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 鼠标悬停时的凹凸效果 */
+select:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 鼠标点击时的凹凸效果 */
+select:active {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 下拉选项样式 */
+option {
+    padding: 8px;
+}
+
+/* 鼠标悬停到option标签时的灰色渐变高亮效果 */
+option:hover {
+    background: linear-gradient(to right, #eee, #ccc);
+    color: #fff;
+}
+
+#worldMap{
+    position: relative;
+    z-index: 0;
+}
+
+.logo-img {
+    position: relative;
+    display: inline-block;
+}
+
+.logo-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    filter: blur(5px); /* 添加模糊效果 */
+}
+
+.logo-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5); /* 添加半透明背景色，可根据需求调整透明度 */
+}
+
+.button-container {
+    position: relative;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    display: none;
+}

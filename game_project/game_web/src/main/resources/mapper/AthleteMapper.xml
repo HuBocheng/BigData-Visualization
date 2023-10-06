@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.br.dao.CountryRecordDao">
+    <!--查询所有记录-->
+    <select id="findAll" resultType="com.game.br.entity.AthleteRecord">
+        select * from athleteShow
+    </select>
+
+    <!--查询某个国家每年金银铜数目-->
+    <select id="findCountryMedalOverview" resultType="com.game.br.entity.CountryMedalOverview">
+        select year,sum(goldNum) totalGoldNum,sum(silverNum) totalSilverNum,sum(bronzeNum) totalBronzeNum,sum(totalNum) totalNum
+        from countryShow
+        where country=#{countrySelect}
+        Group by year
+    </select>
+
+    <select id="findWorldwideMedalOverview" resultType="com.game.br.entity.WorldwideMedalOverview">
+        select country,year,sum(goldNum) totalGoldNum,sum(silverNum) totalSilverNum,sum(bronzeNum) totalBronzeNum,sum(totalNum) totalNum
+        from countryShow
+        where year>=1984
+        Group by country,year
+        order by year
+    </select>
+
+    <select id="findAccMedalData" resultType="com.game.br.entity.AccMedalData">
+        with temp as(
+        select country,year,sum(goldNum) totalGoldNum,sum(silverNum) totalSilverNum,sum(bronzeNum) totalBronzeNum,sum(totalNum) totalNum
+        from countryShow
+        where year>=1984
+        Group by country,year
+        )
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=1984
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=1988
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=1992
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=1994
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=1996
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=1998
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2000
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2002
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2004
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2006
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2008
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2010
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2012
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2014
+        group by country
+        UNION ALL
+        select country,max(year) year,sum(totalGoldNum) accGoldNum,sum(totalSilverNum) accSilverNum,sum(totalBronzeNum) accBronzeNum,sum(totalNum) acctotalNum from temp
+        where year&lt;=2016
+        group by country
+        order by year;
+
+
+    </select>
+
+    <select id="findAllFinanceRecord" resultType="com.game.br.entity.FinanceRecord">
+        select * from financeshow
+    </select>
+
+</mapper>
